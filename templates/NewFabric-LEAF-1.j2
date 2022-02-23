@@ -1,0 +1,156 @@
+
+
+!
+ip vrf Vrf1
+ exit
+!
+
+!
+
+!
+port-group 1/1/1
+ mode eth 10g-4x
+ exit
+!
+port-group 1/1/2
+ mode eth 10g-4x
+ exit
+!
+port-group 1/1/3
+ mode eth 25g-4x
+ exit
+!
+port-group 1/1/4
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/5
+ mode eth 100g-1x
+ exit
+!
+port-group 1/1/6
+ mode eth 100g-1x
+ exit
+!
+
+!
+
+!
+nve
+ source-interface loopback 1
+ exit
+!
+
+!
+
+!
+evpn
+!
+ evi 200
+  vni 200
+  rd auto
+  route-target 200:1 both
+!
+ evi 101
+  vni 101
+  rd auto
+  route-target 101:1 both
+!
+router-mac 00:01:02:03:04:01
+vrf Vrf1
+  vni 3000
+  route-target 65535:30000 both
+  advertise ipv4 connected
+exit
+!
+!
+
+!
+
+!
+ip virtual-router mac-address 00:00:00:11:22:01
+!
+
+!
+
+!
+virtual-network 200
+ description vlan:200_extended_to_switches:NewFabric-LEAF-3_NewFabric-LEAF-4
+ vxlan-vni 200
+!
+virtual-network 101
+ description vlan:101_extended_to_switches:NewFabric-LEAF-3_NewFabric-LEAF-4
+ vxlan-vni 101
+!
+
+!
+
+!
+interface virtual-network 200
+ no shutdown
+ description "vlan:200_extended_to_switches:NewFabric-LEAF-3_NewFabric-LEAF-4"
+ ip vrf forwarding Vrf1
+ ip address 172.16.1.1/24
+ ip virtual-router address 172.16.1.254
+!
+interface virtual-network 101
+ no shutdown
+ description "vlan:101_extended_to_switches:NewFabric-LEAF-3_NewFabric-LEAF-4"
+ ip vrf forwarding Vrf1
+ ip address 172.16.0.1/24
+ ip virtual-router address 172.16.0.254
+!
+
+!
+
+!
+interface vlan 101
+ virtual-network 101
+ mtu 9216
+
+!
+
+!
+interface vlan 200
+ virtual-network 200
+ mtu 9216
+
+!
+
+!
+interface vlan 4000
+ mtu 9216
+
+!
+
+!
+vlt-domain 127
+ backup destination 10.67.194.4
+ discovery-interface ethernet1/1/9
+ discovery-interface ethernet1/1/10
+ discovery-interface ethernet1/1/11
+ discovery-interface ethernet1/1/12
+ peer-routing
+ vlt-mac 00:00:00:00:00:01
+!
+
+!
+
+!
+uplink-state-group 1
+ name "Virtual-switch-fail-over"
+ enable
+ downstream ethernet1/1/1:1
+ downstream ethernet1/1/2:1
+ downstream ethernet1/1/14
+ downstream ethernet1/1/15
+ upstream port-channel 10
+ upstream port-channel 11
+ upstream port-channel 12
+ upstream port-channel 13
+ upstream port-channel 14
+ upstream port-channel 15
+ upstream VLTi
+!
+
+!
