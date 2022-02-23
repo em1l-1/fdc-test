@@ -1,6 +1,6 @@
-NewFabric-SPINE-1 ansible_host=10.67.194.1 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
-NewFabric-LEAF-1 ansible_host=10.67.194.3 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
-NewFabric-SPINE-2 ansible_host=10.67.194.2 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
-NewFabric-LEAF-2 ansible_host=10.67.194.4 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
-NewFabric-LEAF-3 ansible_host=10.67.194.5 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
-NewFabric-LEAF-4 ansible_host=10.67.194.6 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-SPINE-1 ansible_host=192.168.1.11 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-LEAF-1 ansible_host=192.168.1.13 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-SPINE-2 ansible_host=192.168.1.12 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-LEAF-2 ansible_host=192.168.1.14 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-LEAF-3 ansible_host=192.168.1.15 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
+NewFabric-LEAF-4 ansible_host=192.168.1.16 ansible_network_os="dellemc.os10.os10" ansible_ssh_user=admin ansible_ssh_pass=admin
